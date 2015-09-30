@@ -1,0 +1,9 @@
+---
+- name: Create Directory Structure
+  file: path=/etc/marathon/conf state=directory
+
+- name: Add Marathon Conf
+  template: src=hn.j2 dest=/etc/marathon/conf/hostname
+
+- name: Define ZK masters
+  template: src=zkConf.j2 dest=/etc/marathon/conf/master

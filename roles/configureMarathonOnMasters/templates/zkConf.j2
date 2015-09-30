@@ -1,0 +1,2 @@
+zk://{% for host in groups['MesosMasters'] %}{{hostvars[host]['ansible_eth0']['ipv4']['address'] }}:2181{% if not loop.last %},{% else %}/marathon{% endif %}{% endfor %}
+

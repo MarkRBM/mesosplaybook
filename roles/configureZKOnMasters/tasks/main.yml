@@ -1,0 +1,9 @@
+---
+- name: Add mesos ZK conf
+  template: src=mesos.zk.j2 dest=/etc/mesos/zk
+
+- name: Add ZK id
+  template: src=zkId.j2 dest=/etc/zookeeper/conf/myid
+
+- name: Map ids to hosts
+  template: src=zkMapping.j2 dest=/etc/zookeeper/conf/zoo.cfg

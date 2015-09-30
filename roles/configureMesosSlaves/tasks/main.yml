@@ -1,0 +1,22 @@
+---
+- name: Stop ZK
+  service: name=zookeeper state=stopped
+
+- name: ensure ZK dosn't restart on boot
+  template: src=override.j2 dest=/etc/init/zookeeper.override
+
+- name: ensure mesos-master process dosn't restart on boot
+  template: src=override.j2 dest=/etc/init/mesos-master.override
+
+- name: Stop Mesos Master Processes
+  service: name=mesos-master state=stopped
+
+- name: set ip
+  template: src=ip.j2 dest=/etc/mesos-slave/ip
+
+- name: set hostname
+  template: src=hn.j2 dest=/etc/mesos-slave/hostname
+
+- name: start slave process
+  service: name=mesos-slave state=restarted
+

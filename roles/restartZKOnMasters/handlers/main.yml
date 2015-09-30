@@ -1,0 +1,9 @@
+---
+- name: restartZK
+  service: name=zookeeper state=restarted
+
+- name: startMesosMaster
+  service: name=mesos-master state=restarted
+
+- name: startMarathon
+  service: name=marathon state=restarted

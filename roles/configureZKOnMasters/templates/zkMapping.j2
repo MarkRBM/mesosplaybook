@@ -1,0 +1,3 @@
+{% for host in groups['MesosMasters'] %}
+server.{{ hostvars[host]['zkId'] }}={{ hostvars[host]['hn'] }}:2888:3888 
+{% endfor %}

@@ -1,0 +1,10 @@
+---
+- name: Modify Quorum
+  template: src=quorum.j2 dest=/etc/mesos-master/quorum
+
+- name: Configure ip
+  template: src=ip.j2 dest=/etc/mesos-master/ip
+
+- name: Configure hostname
+  template: src=hn.j2 dest=/etc/mesos-master/hostname
+

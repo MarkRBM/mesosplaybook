@@ -1,0 +1,38 @@
+---
+- hosts: MesosMasters
+  sudo: yes
+  user: root
+  roles:
+   - installMesosMasters
+
+- hosts: MesosSlaves
+  sudo: yes
+  user: root
+  roles:
+   - installMesosSlaves
+
+- hosts: MesosMasters
+  sudo: yes
+  user: root
+  roles:
+   - configureZKOnMasters
+ 
+- hosts: MesosSlaves
+  sudo: yes
+  user: root
+  roles:
+   - configureZKOnSlaves
+ 
+- hosts: MesosMasters
+  sudo: yes
+  user: root
+  roles:
+   - configureMesosMasters
+   - configureMarathonOnMasters
+   - restartZKOnMasters
+ 
+- hosts: MesosSlaves
+  sudo: yes
+  user: root
+  roles:
+   - configureMesosSlaves
