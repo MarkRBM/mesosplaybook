@@ -5,5 +5,8 @@
 - name: Add Marathon Conf
   template: src=hn.j2 dest=/etc/marathon/conf/hostname
 
-- name: Define ZK masters
-  template: src=zkConf.j2 dest=/etc/marathon/conf/master
+- name: Define Marathon ZK masters
+  template: src=zkConfOne.j2 dest=/etc/marathon/conf/master
+
+- name: Define Marathons own zk info
+  template: src=zkConfTwo.j2 dest=/etc/marathon/conf/zk

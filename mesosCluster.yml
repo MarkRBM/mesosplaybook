@@ -29,10 +29,10 @@
   roles:
    - configureMesosMasters
    - configureMarathonOnMasters
-   - restartZKOnMasters
- 
-- hosts: MesosSlaves
-  sudo: yes
-  user: root
-  roles:
-   - configureMesosSlaves
+#- restartZKOnMasters
+#
+#- hosts: MesosSlaves
+#  sudo: yes
+#  user: root
+#  roles:
+#   - configureMesosSlaves
