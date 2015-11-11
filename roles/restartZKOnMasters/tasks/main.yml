@@ -1,10 +1,18 @@
 ---
-- name: Stop all mesos slave processes
-  service: name=mesos-slave state=stopped
+- name: stop ZK
+  service: name=zookeeper state=stopped
 
-- name: Make sure slave process dont start on boot
-  template: src=override.j2 dest=/etc/init/mesos-slave.override
-  notify: 
-   - restartZK
-   - startMesosMaster
-   - startMarathon
+- name: stop marathon
+  service: name=marathon state=stopped
+
+- name: stop Mesos Master
+  service: name=mesos-master state=stopped
+
+- name: start ZK
+  service: name=zookeeper state=started
+
+- name: start marathon
+  service: name=marathon state=started
+
+- name: start Mesos Master
+  service: name=mesos-master state=started

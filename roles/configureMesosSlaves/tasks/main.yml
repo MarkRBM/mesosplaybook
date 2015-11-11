@@ -17,6 +17,9 @@
 - name: set hostname
   template: src=hn.j2 dest=/etc/mesos-slave/hostname
 
+- name: stop slave process
+  service: name=mesos-slave state=stopped
+
 - name: start slave process
-  service: name=mesos-slave state=restarted
+  service: name=mesos-slave state=started
 

@@ -9,4 +9,7 @@
   apt: update_cache=yes
 
 - name: Install Mesosphere
-  apt: pkg=mesosphere state=installed update_cache=true
+  apt: pkg=mesos state=installed update_cache=true
+
+- name: Install Marathon
+  apt: pkg=marathon state=installed update_cache=true

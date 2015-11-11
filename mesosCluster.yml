@@ -3,19 +3,16 @@
   sudo: yes
   user: root
   roles:
+   - installJavaEight
    - installMesosMasters
+   - configureZKOnMasters
+   - configureMesosMasters
 
 - hosts: MesosSlaves
   sudo: yes
   user: root
   roles:
    - installMesosSlaves
-
-- hosts: MesosMasters
-  sudo: yes
-  user: root
-  roles:
-   - configureZKOnMasters
  
 - hosts: MesosSlaves
   sudo: yes
@@ -27,12 +24,11 @@
   sudo: yes
   user: root
   roles:
-   - configureMesosMasters
+   - restartZKOnMasters
    - configureMarathonOnMasters
-#- restartZKOnMasters
-#
-#- hosts: MesosSlaves
-#  sudo: yes
-#  user: root
-#  roles:
-#   - configureMesosSlaves
+
+- hosts: MesosSlaves
+  sudo: yes
+  user: root
+  roles:
+   - configureMesosSlaves

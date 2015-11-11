@@ -8,3 +8,11 @@
 - name: Configure hostname
   template: src=hn.j2 dest=/etc/mesos-master/hostname
 
+- name: ensure mesos-slave process dosn't restart on boot
+  template: src=override.j2 dest=/etc/init/mesos-slave.override
+
+- name: Stop Mesos-slave process
+  service: name=mesos-slave state=stopped
+
+- name: restart mesos-master
+  service: name=mesos-master state=restarted
