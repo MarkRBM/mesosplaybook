@@ -7,12 +7,14 @@
    - installMesosMasters
    - configureZKOnMasters
    - configureMesosMasters
+   - configureLogs
 
 - hosts: MesosSlaves
   sudo: yes
   user: root
   roles:
    - installMesosSlaves
+   - configureLogs
  
 - hosts: MesosSlaves
   sudo: yes
@@ -32,3 +34,4 @@
   user: root
   roles:
    - configureMesosSlaves
+   - installConfigureMesosDns

@@ -1,0 +1,22 @@
+{
+"zk": "zk://{% for host in groups['MesosMasters'] %}{{hostvars[host]['ansible_eth0']['ipv4']['address'] }}:2181{% if not loop.last %},{% else %}/mesos{% endif %}{% endfor %}",
+"masters": [{% for host in groups['MesosMasters'] %}"{{hostvars[host]['ansible_eth0']['ipv4']['address'] }}:5050"{% if not loop.last %}, {% else %}{% endif %}{% endfor %}],
+"refreshSeconds": 60,
+"ttl": 60,
+"domain": "mesos",
+"port": 53,
+"resolvers": ["8.8.8.8"],
+"timeout": 5, 
+"httpon": true,
+"dnson": true,
+"httpport": 8123,
+"externalon": true,
+"listener": "0.0.0.0",
+"SOAMname": "ns1.mesos",
+"SOARname": "root.ns1.mesos",
+"SOARefresh": 60,
+"SOARetry":   600,
+"SOAExpire":  86400,
+"SOAMinttl": 60,
+"IPSources": ["netinfo", "mesos", "host"]
+}

@@ -1,0 +1,22 @@
+---
+- name: create directory 
+  file: path=/opt/mesosDns state=directory mode=0777
+
+- name: install mesos dns
+  get_url: url=https://github.com/mesosphere/mesos-dns/releases/download/v0.5.1/mesos-dns-v0.5.1-linux-amd64 dest=/opt/mesosDns/mesos-dns
+
+- name: set mesos-dns executable permissions to 777
+  file: path=/opt/mesosDns/mesos-dns state=file mode=0777
+
+- name: add mesos dns conf
+  template: src=mesosDns.conf.j2 dest=/opt/mesosDns/config.json
+
+- name: set mesos-dns conf file permissions to 777
+  file: path=/opt/mesosDns/mesos-dns state=file mode=0777
+
+- name: mesos-dns slave setup
+  template: src=resolvconfHead.j2 dest=/etc/resolvconf/resolv.conf.d/head
+
+- name: resolvconf -u
+  shell: resolvconf -u
+
